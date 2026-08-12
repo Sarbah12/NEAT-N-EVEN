@@ -22,6 +22,8 @@
 
   --font-display: "Bodoni Moda", "Didot", "Playfair Display", Georgia, serif;
   --font-body: "Jost", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  /* used sparingly, for accent lines only */
+  --font-script: "Parisienne", "Snell Roundhand", cursive;
 
   --container: 1200px;
   --container-wide: 1400px;
@@ -279,10 +281,9 @@ p:last-child { margin-bottom: 0; }
   height: var(--header-h);
   display: flex;
   align-items: center;
-  background: transparent;
-  transition: background-color 0.4s var(--ease), box-shadow 0.4s var(--ease),
-              height 0.4s var(--ease), border-color 0.4s var(--ease);
-  border-bottom: 1px solid transparent;
+  background: var(--ink);
+  border-bottom: 1px solid rgba(248, 244, 240, 0.08);
+  transition: height 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
 .site-header .container {
   max-width: var(--container-wide);
@@ -291,14 +292,10 @@ p:last-child { margin-bottom: 0; }
   justify-content: space-between;
   gap: 1.5rem;
 }
-.site-header.is-solid,
-body:not(.has-hero) .site-header {
-  background: rgba(248, 244, 240, 0.94);
-  backdrop-filter: saturate(150%) blur(14px);
-  -webkit-backdrop-filter: saturate(150%) blur(14px);
-  border-bottom-color: var(--line);
+.site-header.is-solid {
+  height: 68px;
+  box-shadow: 0 10px 34px -18px rgba(0, 0, 0, 0.7);
 }
-.site-header.is-solid { height: 72px; }
 
 .brand {
   display: flex;
@@ -307,26 +304,29 @@ body:not(.has-hero) .site-header {
   flex-shrink: 0;
 }
 .brand img {
-  height: 42px;
+  height: 40px;
   width: auto;
   transition: height 0.4s var(--ease);
 }
-.site-header.is-solid .brand img { height: 36px; }
+/* the logo artwork is black; flip it to sit on the dark bar */
+.site-header .brand img { filter: invert(1) brightness(2.4); }
+.site-header.is-solid .brand img { height: 34px; }
 .brand-name {
   display: none;
   font-family: var(--font-display);
   font-size: 1.05rem;
   letter-spacing: 0.02em;
   line-height: 1.1;
+  color: var(--cream);
 }
 .brand-name small {
   display: block;
   font-family: var(--font-body);
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--ink-50);
-  margin-top: 2px;
+  color: rgba(248, 244, 240, 0.55);
+  margin-top: 3px;
 }
 
 .nav { display: none; }
@@ -340,10 +340,11 @@ body:not(.has-hero) .site-header {
 }
 .nav a {
   position: relative;
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   font-weight: 400;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+  color: var(--cream);
   padding-block: 0.35rem;
   transition: color 0.3s var(--ease);
 }
@@ -361,10 +362,20 @@ body:not(.has-hero) .site-header {
 .nav a:hover::after,
 .nav a:focus-visible::after,
 .nav a[aria-current="page"]::after { transform: scaleX(1); transform-origin: left; }
-.nav a:hover, .nav a[aria-current="page"] { color: var(--rose); }
+.nav a:hover, .nav a[aria-current="page"] { color: var(--blush-deep); }
 
 .header-actions { display: flex; align-items: center; gap: 0.75rem; }
-.header-actions .btn { display: none; }
+.header-actions .btn {
+  display: none;
+  background: var(--rose);
+  border-color: var(--rose);
+  color: var(--cream);
+}
+.header-actions .btn:hover, .header-actions .btn:focus-visible {
+  background: var(--cream);
+  border-color: var(--cream);
+  color: var(--ink);
+}
 
 .nav-toggle {
   display: inline-flex;
@@ -382,7 +393,7 @@ body:not(.has-hero) .site-header {
   display: block;
   height: 1px;
   width: 100%;
-  background: var(--ink);
+  background: var(--cream);
   transition: transform 0.35s var(--ease), opacity 0.25s var(--ease);
 }
 .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
@@ -394,7 +405,8 @@ body:not(.has-hero) .site-header {
   position: fixed;
   inset: 0;
   z-index: 99;
-  background: var(--cream);
+  background: var(--ink);
+  color: var(--cream);
   padding: calc(var(--header-h) + 2rem) var(--gutter) 3rem;
   display: flex;
   flex-direction: column;
@@ -406,48 +418,79 @@ body:not(.has-hero) .site-header {
 }
 .mobile-nav.is-open { opacity: 1; visibility: visible; transform: none; }
 .mobile-nav ul { list-style: none; margin: 0; padding: 0; }
-.mobile-nav li + li { border-top: 1px solid var(--line); }
+.mobile-nav li + li { border-top: 1px solid var(--line-light); }
 .mobile-nav a {
   display: block;
   padding: 1.05rem 0;
   font-family: var(--font-display);
   font-size: 1.6rem;
   letter-spacing: -0.01em;
+  color: var(--cream);
 }
-.mobile-nav a[aria-current="page"] { color: var(--rose); }
+.mobile-nav a[aria-current="page"] { color: var(--blush-deep); }
 .mobile-nav-foot {
   margin-top: 2.5rem;
   padding-top: 1.75rem;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--line-light);
   display: grid;
   gap: 1rem;
 }
 .mobile-nav-foot .meta {
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  color: var(--ink-50);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: rgba(248, 244, 240, 0.5);
   text-transform: uppercase;
 }
+.mobile-nav-foot .btn--ghost {
+  color: var(--cream);
+  border-color: rgba(248, 244, 240, 0.4);
+}
+.mobile-nav-foot .btn--ghost:hover { background: var(--cream); color: var(--ink); }
 
 /* ---------- 6. Hero ---------- */
 .hero {
   position: relative;
-  min-height: min(100svh, 940px);
-  padding-top: calc(var(--header-h) + clamp(2rem, 5vw, 4rem));
-  padding-bottom: clamp(3rem, 6vw, 5rem);
+  isolation: isolate;
+  min-height: min(94svh, 880px);
+  padding-top: calc(var(--header-h) + clamp(1.5rem, 4vw, 3rem));
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
   display: flex;
   align-items: center;
   overflow: hidden;
+  background: var(--blush);
+}
+/* full-bleed photograph, knocked back to a texture rather than a picture */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 28%;
+  opacity: 0.22;
+  /* blurred to a soft texture — also stops any studio watermark in the
+     source photograph from being legible behind the headline */
+  filter: blur(8px) grayscale(0.4);
+  transform: scale(1.1);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background:
-    radial-gradient(120% 90% at 82% 12%, var(--blush) 0%, rgba(244, 228, 228, 0) 62%),
-    linear-gradient(178deg, var(--cream) 0%, var(--cream-deep) 100%);
+    linear-gradient(100deg, var(--blush) 0%, var(--blush) 28%,
+                    rgba(244, 228, 228, 0.88) 54%, rgba(244, 228, 228, 0.4) 100%);
 }
 .hero::after {
   content: "";
   position: absolute;
   left: 0; right: 0; bottom: 0;
   height: 1px;
-  background: var(--line);
+  background: rgba(22, 17, 15, 0.1);
 }
 .hero-mark {
   position: absolute;
@@ -468,17 +511,35 @@ body:not(.has-hero) .site-header {
   align-items: center;
 }
 .hero-copy { max-width: 680px; }
-/* capped below the global h1 size so "Your confidence." holds one line */
+/* big condensed display, tight leading — the anchor of the whole page */
 .hero h1 {
-  font-size: clamp(2.6rem, 5.2vw, 4.6rem);
-  margin-bottom: 1.5rem;
+  font-size: clamp(3.1rem, 8.4vw, 6.6rem);
+  line-height: 0.86;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  margin: 0.35rem 0 1.5rem;
 }
 .hero h1 em {
   font-style: italic;
+  text-transform: none;
   color: var(--rose);
 }
-.hero .lede { max-width: 46ch; }
+.hero .lede { max-width: 44ch; }
 .hero .btn-row { margin-top: 2.25rem; }
+
+/* script accent — used only for short lines above a display heading */
+.script {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 3vw, 2.35rem);
+  line-height: 1;
+  color: var(--rose);
+  margin: 0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.script--sm { font-size: clamp(1.2rem, 2vw, 1.6rem); }
+.section--ink .script { color: var(--blush-deep); }
 
 .hero-meta {
   margin-top: clamp(2.5rem, 5vw, 3.5rem);
@@ -1374,6 +1435,211 @@ body:not(.has-hero) .site-header {
 .wa-float:hover { background: #1da851; }
 .wa-float svg { width: 27px; height: 27px; }
 
+/* ---------- 17b. Reference-layout components ---------- */
+
+/* -- circular quick-link band under the hero -- */
+.icon-band {
+  background: var(--ink);
+  padding-block: clamp(2.25rem, 4vw, 3.25rem);
+}
+.icon-band ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem 0.75rem;
+}
+.icon-band a {
+  display: grid;
+  justify-items: center;
+  gap: 0.8rem;
+  text-align: center;
+}
+.icon-band .circle {
+  width: clamp(56px, 8vw, 68px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--blush);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  transition: background-color 0.35s var(--ease), color 0.35s var(--ease),
+              transform 0.35s var(--ease);
+}
+.icon-band .circle svg { width: 24px; height: 24px; }
+.icon-band a:hover .circle,
+.icon-band a:focus-visible .circle {
+  background: var(--rose);
+  color: var(--cream);
+  transform: translateY(-5px);
+}
+.icon-band .label {
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(248, 244, 240, 0.72);
+}
+.icon-band a:hover .label { color: var(--cream); }
+
+/* -- thin swash rule under a centred subtitle -- */
+.flourish {
+  display: block;
+  width: 190px;
+  max-width: 60%;
+  height: auto;
+  margin: 1.1rem auto 0;
+  color: var(--rose);
+}
+.flourish--left { margin-inline: 0; }
+.section--ink .flourish { color: var(--blush-deep); }
+
+/* -- circular portrait with a name plate under it -- */
+.circle-media {
+  position: relative;
+  width: min(100%, 320px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-inline: auto;
+  background: var(--cream-deep);
+  box-shadow: 0 0 0 1px var(--line), 0 0 0 10px var(--blush);
+}
+.circle-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  /* pull in tighter so it reads as a head-and-shoulders portrait */
+  transform: scale(1.3);
+  transform-origin: 50% 24%;
+}
+.name-plate {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: max-content;
+  max-width: 90%;
+  margin: -1.1rem auto 0;
+  background: var(--cream);
+  border: 1px solid var(--rose);
+  padding: 0.5rem 1.5rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.section--ink .name-plate { background: var(--ink); color: var(--cream); }
+
+/* -- services as circles with a label chip -- */
+.circle-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(2rem, 4vw, 2.75rem) clamp(1rem, 2.5vw, 1.75rem);
+}
+.circle-card { display: block; text-align: center; }
+.circle-card__media {
+  /* it's a <span>; without this it stays inline and ignores the sizing below */
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 220px;
+  aspect-ratio: 1;
+  margin-inline: auto;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--cream-deep);
+  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease);
+}
+.circle-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s var(--ease);
+}
+.circle-card:hover .circle-card__media {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lift);
+}
+.circle-card:hover .circle-card__media img { transform: scale(1.07); }
+.circle-card__label {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  margin: -0.95rem auto 0;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 0.5rem 1.1rem;
+  font-size: 0.64rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: background-color 0.35s var(--ease);
+}
+.circle-card:hover .circle-card__label { background: var(--rose); }
+.circle-card__note {
+  display: block;
+  margin-top: 0.85rem;
+  font-size: 0.8rem;
+  color: var(--ink-70);
+  letter-spacing: 0.02em;
+}
+.section--ink .circle-card__note { color: rgba(248, 244, 240, 0.7); }
+
+/* -- repeated stacked wordmark CTA -- */
+.stacked-cta {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--blush);
+  padding-block: clamp(3rem, 6vw, 4.5rem) 0;
+  text-align: center;
+}
+.stacked-cta__lines { display: grid; }
+.stacked-cta__line {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  /* sized to bleed just past the viewport edges, as in the reference;
+     .stacked-cta clips the overflow so the page never scrolls sideways */
+  font-size: clamp(2.6rem, 16vw, 13rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+.stacked-cta__line:nth-child(1) { color: var(--ink); }
+.stacked-cta__line:nth-child(2) { color: var(--cream); }
+.stacked-cta__line:nth-child(3) { color: var(--ink); opacity: 0.28; }
+.stacked-cta__figure {
+  position: relative;
+  z-index: 2;
+  width: min(60%, 340px);
+  margin: clamp(-11rem, -14vw, -6rem) auto 0;
+  display: block;
+}
+.stacked-cta__panel {
+  position: relative;
+  z-index: 3;
+  background: var(--ink);
+  color: var(--cream);
+  padding: clamp(2rem, 4vw, 3rem) var(--gutter);
+}
+.stacked-cta__panel .lede { color: rgba(248, 244, 240, 0.75); max-width: 46ch; margin-inline: auto; }
+.stacked-cta__panel .btn-row { justify-content: center; margin-top: 1.75rem; }
+
+/* -- centred section heading treatment used across the site -- */
+.head-centred { text-align: center; max-width: 700px; margin-inline: auto; }
+.head-centred .sub {
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ink-50);
+  margin: 0.9rem 0 0;
+}
+.section--ink .head-centred .sub { color: rgba(248, 244, 240, 0.55); }
+.head-centred h2 { text-transform: uppercase; letter-spacing: -0.01em; }
+
 /* ---------- 18. Reveal animation ----------
    Gated on the `js` class that index/about/etc. set in <head>. Without
    JavaScript the content simply renders — it never starts invisible. */
@@ -1403,6 +1669,8 @@ body:not(.has-hero) .site-header {
 
 @media (min-width: 800px) {
   .brand-name { display: block; }
+  .icon-band ul { grid-template-columns: repeat(6, 1fr); }
+  .circle-grid { grid-template-columns: repeat(4, 1fr); }
   .pillars { grid-template-columns: repeat(3, 1fr); }
   .card-grid--3 { grid-template-columns: repeat(3, 1fr); }
   .card-grid--4 { grid-template-columns: repeat(4, 1fr); }
