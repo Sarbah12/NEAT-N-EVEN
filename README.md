@@ -30,14 +30,17 @@ Supporting files: `css/styles.css`, `js/main.js`, `js/gallery-data.js`,
 Booking enquiries are wired to **ayisijanet5@gmail.com** via FormSubmit, which
 needs no account.
 
-**Before it works, the address has to be confirmed once.** The activation
-email has already been triggered — it is sitting in that inbox now:
+**FormSubmit activates per domain, not just per email address.** An activation
+done from localhost does NOT activate the live site — each origin triggers its
+own confirmation. Always activate from the real domain:
 
-1. Open **ayisijanet5@gmail.com** and look for a mail from FormSubmit with the
-   subject line about confirming your email / activating your form.
-2. **Check Spam and the Promotions tab** — it very often lands there.
-3. Click **Activate Form** in it.
-4. From then on every booking lands in that inbox, and hitting *Reply* goes
+1. Submit one test enquiry from **https://www.neatneven.com/contact/** — not
+   from localhost and not from a file:// page.
+2. Open **ayisijanet5@gmail.com** and find the mail from FormSubmit. Check that
+   it says **Form at: https://www.neatneven.com/...** before clicking.
+3. **Check Spam and the Promotions tab** — it very often lands there.
+4. Click **Activate Form**.
+5. From then on every booking lands in that inbox, and hitting *Reply* goes
    straight back to the client.
 
 Until that link is clicked, FormSubmit accepts the request but delivers
