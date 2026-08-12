@@ -1640,6 +1640,218 @@ p:last-child { margin-bottom: 0; }
 .section--ink .head-centred .sub { color: rgba(248, 244, 240, 0.55); }
 .head-centred h2 { text-transform: uppercase; letter-spacing: -0.01em; }
 
+/* ---------- 17c. Studio-flyer components ----------
+   Pill tags, frosted panels, arch-topped media, vertical side labels and the
+   segmented contact bar. Same devices as the reference flyers, rendered in the
+   brand palette rather than neon. */
+
+/* -- pill tag cluster -- */
+.tag-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.62rem 1.15rem;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(22, 17, 15, 0.1);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  backdrop-filter: blur(12px) saturate(150%);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  white-space: nowrap;
+  transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease),
+              transform 0.3s var(--ease), color 0.3s var(--ease);
+}
+/* small rose diamond, in place of the reference's star bullet */
+.tag-pill::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  background: var(--rose);
+  transform: rotate(45deg);
+  transition: background-color 0.3s var(--ease);
+}
+a.tag-pill:hover, a.tag-pill:focus-visible {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--cream);
+  transform: translateY(-2px);
+}
+a.tag-pill:hover::before { background: var(--blush-deep); }
+
+.tag-pill--solid {
+  background: var(--rose);
+  border-color: var(--rose);
+  color: var(--cream);
+}
+.tag-pill--solid::before { background: var(--cream); }
+
+.section--ink .tag-pill {
+  background: rgba(248, 244, 240, 0.08);
+  border-color: rgba(248, 244, 240, 0.22);
+  color: var(--cream);
+}
+.section--ink .tag-pill::before { background: var(--blush-deep); }
+
+/* -- frosted panel -- */
+.glass {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border-radius: 20px;
+  box-shadow: 0 24px 60px -34px rgba(22, 17, 15, 0.5);
+}
+.glass--ink {
+  background: rgba(22, 17, 15, 0.55);
+  border-color: rgba(248, 244, 240, 0.16);
+  color: var(--cream);
+}
+
+/* -- segmented contact bar -- */
+.contact-bar {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: rgba(22, 17, 15, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.contact-bar li { background: rgba(255, 255, 255, 0.55); }
+.contact-bar a, .contact-bar span.item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.25rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  transition: color 0.3s var(--ease);
+}
+.contact-bar a:hover { color: var(--rose); }
+.contact-bar .ico {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--cream);
+  display: grid;
+  place-items: center;
+}
+.contact-bar .ico svg { width: 14px; height: 14px; }
+
+/* -- arch-topped media -- */
+.arch {
+  position: relative;
+  overflow: hidden;
+  border-radius: 999px 999px 14px 14px;
+  background: var(--cream-deep);
+}
+.arch img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.arch--soft { border-radius: 999px 999px 999px 999px / 44% 44% 10% 10%; }
+.arch--frame {
+  padding: 12px;
+  background: var(--blush);
+  border-radius: 999px 999px 20px 20px;
+}
+.arch--frame > .arch { border-radius: 999px 999px 10px 10px; }
+
+/* -- rotated label down the edge of an image -- */
+.side-label {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: -0.25rem;
+  writing-mode: vertical-rl;
+  transform: translateY(-50%) rotate(180deg);
+  font-size: 0.6rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--ink-50);
+  pointer-events: none;
+}
+.side-label--right { left: auto; right: -0.25rem; }
+.side-label--light { color: rgba(248, 244, 240, 0.6); }
+
+/* -- soft diagonal light leak (the flyers' prism streak, toned down) -- */
+.sheen {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(115deg,
+    transparent 28%,
+    rgba(200, 44, 107, 0.10) 41%,
+    rgba(185, 148, 94, 0.10) 47%,
+    rgba(163, 20, 71, 0.06) 53%,
+    transparent 64%);
+  mix-blend-mode: multiply;
+}
+
+/* -- small rounded thumbnail row -- */
+.thumb-row {
+  display: flex;
+  gap: 0.6rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.thumb-row li {
+  width: clamp(74px, 12vw, 104px);
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: var(--shadow-soft);
+}
+.thumb-row img { width: 100%; height: 100%; object-fit: cover; }
+
+/* -- numbered service block -- */
+.svc {
+  position: relative;
+  display: grid;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: center;
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+.svc + .svc { border-top: 1px solid var(--line); }
+/* side padding gives the rotated label its own lane beside the photo,
+   instead of overlapping the image edge */
+.svc__media { position: relative; padding-inline: 1.75rem; }
+.svc__media .arch { aspect-ratio: 4 / 5; }
+.svc__media .side-label { left: 0; }
+.svc__media .side-label--right { left: auto; right: 0; }
+.svc__num {
+  position: absolute;
+  z-index: 3;
+  top: -0.4rem;
+  right: 0.6rem;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  line-height: 1;
+  color: var(--rose);
+  opacity: 0.22;
+}
+.svc__body { position: relative; }
+.svc__panel { padding: clamp(1.5rem, 3vw, 2rem); margin-top: 1.5rem; }
+
 /* ---------- 18. Reveal animation ----------
    Gated on the `js` class that index/about/etc. set in <head>. Without
    JavaScript the content simply renders — it never starts invisible. */
@@ -1667,10 +1879,16 @@ p:last-child { margin-bottom: 0; }
   .masonry { column-count: 2; }
 }
 
+@media (min-width: 640px) {
+  .contact-bar { grid-template-columns: repeat(3, 1fr); }
+}
+
 @media (min-width: 800px) {
   .brand-name { display: block; }
   .icon-band ul { grid-template-columns: repeat(6, 1fr); }
   .circle-grid { grid-template-columns: repeat(4, 1fr); }
+  .svc { grid-template-columns: 0.85fr 1.15fr; }
+  .svc:nth-of-type(even) .svc__media { order: 2; }
   .pillars { grid-template-columns: repeat(3, 1fr); }
   .card-grid--3 { grid-template-columns: repeat(3, 1fr); }
   .card-grid--4 { grid-template-columns: repeat(4, 1fr); }
