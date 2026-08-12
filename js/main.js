@@ -227,7 +227,7 @@
       lb.classList.remove('is-open');
       lb.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('is-locked');
-      lbImg.src = '';
+      lbImg.removeAttribute('src'); // not src='', which refetches the page
       if (lastFocus) lastFocus.focus();
     }
 

@@ -14,7 +14,7 @@
 <link rel="icon" href="assets/img/brand/mark.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Jost:wght@300;400;500&family=Parisienne&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Manrope:wght@300;400;500;600;700&family=Parisienne&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.add('js');</script>
 <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -129,7 +129,9 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
   </button>
   <figure style="margin:0;display:grid;justify-items:center">
-    <img id="lbImage" src="" alt="">
+    <!-- no src until an image is opened: src="" resolves to the page URL and
+         makes the browser re-download this document as an image -->
+    <img id="lbImage" alt="">
     <figcaption class="lightbox-caption" id="lbCaption"></figcaption>
   </figure>
 </div>

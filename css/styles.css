@@ -6,8 +6,10 @@
 /* ---------- 1. Tokens ---------- */
 :root {
   --ink: #16110F;
-  --ink-70: rgba(22, 17, 15, 0.7);
-  --ink-50: rgba(22, 17, 15, 0.5);
+  --ink-70: rgba(22, 17, 15, 0.74);
+  /* muted text. 0.5 alpha only reached 3.5:1 on cream — below the 4.5:1
+     WCAG AA floor for the small uppercase labels this is used on. */
+  --ink-50: rgba(22, 17, 15, 0.64);
   --ink-soft: #4A3F3B;
   --cream: #F8F4F0;
   --cream-deep: #EFE7E0;
@@ -21,15 +23,29 @@
   --line-light: rgba(248, 244, 240, 0.18);
 
   --font-display: "Bodoni Moda", "Didot", "Playfair Display", Georgia, serif;
-  --font-body: "Jost", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Manrope", "Inter", -apple-system, BlinkMacSystemFont,
+               "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   /* used sparingly, for accent lines only */
   --font-script: "Parisienne", "Snell Roundhand", cursive;
 
-  --container: 1200px;
+  /* one scale for every uppercase micro-label, so tracking stays consistent */
+  --label-size: 0.7rem;
+  --label-track: 0.18em;
+
+  /* ONE content rail. These were 1200 and 1400, which meant the header,
+     hero and footer aligned to one edge while page-heroes and several
+     sections aligned to another — a visible 100px jump down the page.
+     Only --container-narrow deliberately differs, and that is centred. */
+  --container: 1400px;
   --container-wide: 1400px;
   --gutter: clamp(1.25rem, 5vw, 3.5rem);
   --section-y: clamp(4.5rem, 9vw, 8rem);
+  /* radius scale: buttons stay sharp against rounded panels, the same
+     contrast the reference flyers use */
   --radius: 2px;
+  --radius-sm: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 100px;
   --header-h: 84px;
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -53,11 +69,15 @@ body {
   background: var(--cream);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
-  font-weight: 300;
-  line-height: 1.75;
-  letter-spacing: 0.005em;
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.075rem);
+  /* 400, not 300 — the old light weight thinned out badly on cream */
+  font-weight: 400;
+  line-height: 1.68;
+  letter-spacing: -0.002em;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
   overflow-x: hidden;
 }
 
@@ -79,12 +99,17 @@ h1, h2, h3, h4 {
   letter-spacing: -0.015em;
   margin: 0;
   text-wrap: balance;
+  /* let Bodoni pick the right optical master: fine hairlines when large,
+     sturdier strokes when small */
+  font-optical-sizing: auto;
 }
 
 h1 { font-size: clamp(2.75rem, 6.4vw, 5.25rem); }
 h2 { font-size: clamp(2.1rem, 4.4vw, 3.5rem); }
-h3 { font-size: clamp(1.35rem, 2vw, 1.75rem); }
-h4 { font-size: 1.15rem; }
+/* Bodoni's thin strokes go weak below ~2rem, so the small headings carry
+   a heavier weight rather than a larger size */
+h3 { font-size: clamp(1.35rem, 2vw, 1.75rem); font-weight: 500; }
+h4 { font-size: 1.15rem; font-weight: 500; }
 
 p { margin: 0 0 1.25em; text-wrap: pretty; }
 p:last-child { margin-bottom: 0; }
@@ -161,10 +186,11 @@ p:last-child { margin-bottom: 0; }
 .eyebrow--center { justify-content: center; }
 
 .lede {
-  font-size: clamp(1.06rem, 1rem + 0.4vw, 1.3rem);
-  line-height: 1.7;
+  font-size: clamp(1.06rem, 1rem + 0.4vw, 1.28rem);
+  line-height: 1.62;
   color: var(--ink-70);
-  font-weight: 300;
+  font-weight: 400;
+  letter-spacing: -0.008em;
 }
 
 .section-head { max-width: 640px; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
@@ -657,7 +683,7 @@ p:last-child { margin-bottom: 0; }
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
 }
 .split-figure--tall img { aspect-ratio: 3 / 4; }
 .split-figure::after {
@@ -666,7 +692,7 @@ p:last-child { margin-bottom: 0; }
   inset: 14px -14px -14px 14px;
   border: 1px solid var(--rose);
   z-index: -1;
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
 }
 
 .pillars {
@@ -705,7 +731,7 @@ p:last-child { margin-bottom: 0; }
   display: block;
   background: var(--cream);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease),
               border-color 0.5s var(--ease);
@@ -771,7 +797,7 @@ p:last-child { margin-bottom: 0; }
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
 }
 .service-detail__index {
   font-family: var(--font-display);
@@ -810,7 +836,7 @@ p:last-child { margin-bottom: 0; }
 .filter-chip {
   padding: 0.6rem 1.15rem;
   border: 1px solid var(--line);
-  border-radius: 100px;
+  border-radius: var(--radius-pill);
   background: transparent;
   font-size: 0.72rem;
   letter-spacing: 0.16em;
@@ -843,7 +869,7 @@ p:last-child { margin-bottom: 0; }
   padding: 0;
   border: 0;
   background: var(--cream-deep);
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   overflow: hidden;
   cursor: zoom-in;
 }
@@ -905,7 +931,7 @@ p:last-child { margin-bottom: 0; }
   width: 100%;
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
 }
 .strip figcaption {
   margin-top: 0.75rem;
@@ -934,7 +960,7 @@ p:last-child { margin-bottom: 0; }
   max-height: 82vh;
   width: auto;
   object-fit: contain;
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6);
 }
 .lightbox-caption {
@@ -975,7 +1001,7 @@ p:last-child { margin-bottom: 0; }
   flex-direction: column;
   background: var(--cream);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   padding: clamp(1.75rem, 3vw, 2.5rem);
   transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
@@ -999,7 +1025,7 @@ p:last-child { margin-bottom: 0; }
   text-transform: uppercase;
   color: var(--blush-deep);
   border: 1px solid rgba(233, 210, 212, 0.4);
-  border-radius: 100px;
+  border-radius: var(--radius-pill);
   padding: 0.3rem 0.75rem;
 }
 .price-card h3 { margin-bottom: 0.5rem; }
@@ -1048,7 +1074,7 @@ p:last-child { margin-bottom: 0; }
 .quote-card {
   background: var(--cream);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   padding: clamp(1.75rem, 3vw, 2.25rem);
   display: flex;
   flex-direction: column;
@@ -1109,7 +1135,7 @@ p:last-child { margin-bottom: 0; }
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   list-style: none;
   margin: 0;
@@ -1202,7 +1228,7 @@ p:last-child { margin-bottom: 0; }
 .form-card {
   background: var(--cream);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   padding: clamp(1.5rem, 3.5vw, 2.75rem);
   box-shadow: var(--shadow-soft);
 }
@@ -1226,7 +1252,7 @@ p:last-child { margin-bottom: 0; }
   width: 100%;
   padding: 0.9rem 1rem;
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.6);
   font-family: var(--font-body);
   font-size: 0.95rem;
@@ -1283,7 +1309,7 @@ p:last-child { margin-bottom: 0; }
 .form-status {
   margin-top: 1rem;
   padding: 0.9rem 1.1rem;
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   font-size: 0.88rem;
   display: none;
 }
@@ -1659,7 +1685,7 @@ p:last-child { margin-bottom: 0; }
   align-items: center;
   gap: 0.6rem;
   padding: 0.62rem 1.15rem;
-  border-radius: 100px;
+  border-radius: var(--radius-pill);
   background: rgba(255, 255, 255, 0.55);
   border: 1px solid rgba(22, 17, 15, 0.1);
   -webkit-backdrop-filter: blur(12px) saturate(150%);
@@ -1710,7 +1736,7 @@ a.tag-pill:hover::before { background: var(--blush-deep); }
   border: 1px solid rgba(255, 255, 255, 0.75);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
   backdrop-filter: blur(18px) saturate(140%);
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   box-shadow: 0 24px 60px -34px rgba(22, 17, 15, 0.5);
 }
 .glass--ink {
@@ -1724,7 +1750,7 @@ a.tag-pill:hover::before { background: var(--blush-deep); }
   display: grid;
   grid-template-columns: 1fr;
   gap: 1px;
-  border-radius: 22px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   background: rgba(22, 17, 15, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.7);
@@ -1816,7 +1842,7 @@ a.tag-pill:hover::before { background: var(--blush-deep); }
 .thumb-row li {
   width: clamp(74px, 12vw, 104px);
   aspect-ratio: 4 / 3;
-  border-radius: 12px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
   border: 2px solid rgba(255, 255, 255, 0.8);
   box-shadow: var(--shadow-soft);
@@ -1851,6 +1877,46 @@ a.tag-pill:hover::before { background: var(--blush-deep); }
 }
 .svc__body { position: relative; }
 .svc__panel { padding: clamp(1.5rem, 3vw, 2rem); margin-top: 1.5rem; }
+
+/* ---------- 17d. Typographic normalisation ----------
+   Tracking on the uppercase micro-labels had drifted between 0.14em and
+   0.34em across components. Two tiers now, applied last so they win. */
+.eyebrow,
+.head-centred .sub,
+.name-plate,
+.footer-col h4,
+.side-label {
+  letter-spacing: 0.24em;
+}
+
+.nav a,
+.btn,
+.tag-pill,
+.filter-chip,
+.icon-band .label,
+.circle-card__label,
+.hero-meta,
+.strip figcaption,
+.price-card__flag,
+.price-card__amount .from,
+.contact-list .k,
+.contact-bar .k,
+.field label,
+.breadcrumb,
+.quote-card cite,
+.mobile-nav-foot .meta,
+.service-card__tag,
+.lightbox-caption {
+  letter-spacing: var(--label-track);
+}
+
+/* Manrope's uppercase sits better a touch heavier than its body weight */
+.eyebrow, .head-centred .sub, .nav a, .btn, .tag-pill, .filter-chip,
+.icon-band .label, .circle-card__label, .name-plate, .footer-col h4,
+.field label, .price-card__flag { font-weight: 500; }
+
+/* the script face has a small x-height; nudge its optical size up */
+.script { line-height: 1.15; padding-bottom: 0.08em; }
 
 /* ---------- 18. Reveal animation ----------
    Gated on the `js` class that index/about/etc. set in <head>. Without
