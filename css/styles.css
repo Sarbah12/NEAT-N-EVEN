@@ -2016,6 +2016,72 @@ a.tag-pill:hover::before { background: var(--blush-deep); }
 .cover__text strong { color: var(--cream); font-weight: 600; }
 .cover__cta { margin-top: 1.75rem; }
 
+/* ---------- 17f. Rate card ---------- */
+.rate-card { padding: clamp(1.5rem, 3.5vw, 2.75rem); }
+.rate-card__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.rate-card__head h3 { font-size: clamp(1.4rem, 2.4vw, 1.9rem); }
+.rate-card__head .meta {
+  font-size: var(--label-size);
+  letter-spacing: var(--label-track);
+  text-transform: uppercase;
+  color: var(--ink-50);
+}
+
+.rate-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.rate-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.rate-list li:first-child { border-top: 1px solid var(--line); }
+.rate-list .name {
+  font-size: 0.98rem;
+  font-weight: 500;
+}
+.rate-list .name small {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--ink-70);
+  margin-top: 0.15rem;
+}
+/* leader dots so the eye tracks from service to price */
+.rate-list .lead {
+  flex: 1;
+  min-width: 1.5rem;
+  align-self: center;
+  border-bottom: 1px dotted rgba(22, 17, 15, 0.28);
+  transform: translateY(-2px);
+}
+.rate-list .amt {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  white-space: nowrap;
+  color: var(--ink);
+}
+.rate-list .amt.is-range { letter-spacing: -0.01em; }
+
+.rate-card__note {
+  margin-top: 1.5rem;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--ink-70);
+}
+
 /* ---------- 17d. Typographic normalisation ----------
    Tracking on the uppercase micro-labels had drifted between 0.14em and
    0.34em across components. Two tiers now, applied last so they win. */

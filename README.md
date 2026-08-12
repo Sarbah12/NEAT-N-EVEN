@@ -37,10 +37,15 @@ Until this is filled in, the **Send enquiry by email** button tells visitors to
 use WhatsApp instead. **The WhatsApp button already works** — it opens a chat to
 055 147 3359 with all the form details filled in.
 
-### 2. Prices
+### 2. Prices — bridal is done, two packages still open
 
-`services.html` has three packages, all showing "On request". To publish real
-rates, find the `PRICING PLACEHOLDERS` comment and replace the amount, e.g.:
+The **Bridal Packages** rate card on `services.html` carries your real rates
+(White Wedding, Engagement/Traditional, Civil, Civil + Reception, Reception
+Only, Trial). Edit those in the `.rate-list` markup.
+
+Two of the three summary cards still read "On request" — **The Session** and
+**The Production**. When you set those rates, find the `PRICING` comment and
+replace the amount:
 
 ```html
 <span class="price-card__amount"><span class="from">From</span> GH&#8373;1,200</span>

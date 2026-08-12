@@ -399,11 +399,10 @@
 
   <!-- ============ PRICING ============ -->
   <!--
-    PRICING PLACEHOLDERS
-    Each package below shows "On request" instead of a number. To publish real rates,
-    replace the text inside <span class="price-card__amount"> with e.g.
-        <span class="from">From</span> GH&#8373;1,200
-    and update the .price-card__note line underneath it.
+    PRICING
+    Bridal rates in the rate card below are the client's real published rates.
+    "The Session" and "The Production" cards still show "On request" — replace
+    the text inside <span class="price-card__amount"> when those rates are set.
   -->
   <section class="section section--blush" id="pricing" style="position:relative;overflow:hidden">
     <span class="sheen" aria-hidden="true"></span>
@@ -415,12 +414,62 @@
           <path d="M2 8c26-9 52-9 78 0s52 9 78 0c14-5 28-5 42 0" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
         </svg>
         <p class="lede reveal reveal-d2" style="margin-top:1.5rem">
-          Every booking is quoted individually &mdash; rates depend on the date, the location, the number of
-          faces and how long we&rsquo;re with you. Here&rsquo;s what each package covers.
+          Bridal rates are published below. Everything else is quoted individually &mdash; it depends on the
+          date, the location, the number of faces and how long we&rsquo;re with you.
         </p>
       </div>
 
-      <div class="price-grid">
+      <!-- ============ BRIDAL RATE CARD ============ -->
+      <div class="glass rate-card reveal" style="max-width:760px;margin-inline:auto">
+        <div class="rate-card__head">
+          <h3>Bridal Packages</h3>
+          <span class="meta">Accra &amp; nationwide</span>
+        </div>
+
+        <ul class="rate-list">
+          <li>
+            <span class="name">White Wedding</span>
+            <span class="lead" aria-hidden="true"></span>
+            <span class="amt is-range">GH&#8373;2,000 &ndash; 4,000</span>
+          </li>
+          <li>
+            <span class="name">Engagement / Traditional Marriage</span>
+            <span class="lead" aria-hidden="true"></span>
+            <span class="amt is-range">GH&#8373;2,000 &ndash; 3,000</span>
+          </li>
+          <li>
+            <span class="name">Civil Wedding</span>
+            <span class="lead" aria-hidden="true"></span>
+            <span class="amt">GH&#8373;2,500</span>
+          </li>
+          <li>
+            <span class="name">Civil Wedding + Reception</span>
+            <span class="lead" aria-hidden="true"></span>
+            <span class="amt is-range">GH&#8373;3,000 &ndash; 3,500</span>
+          </li>
+          <li>
+            <span class="name">Bridal Reception Only</span>
+            <span class="lead" aria-hidden="true"></span>
+            <span class="amt">GH&#8373;800</span>
+          </li>
+          <li>
+            <span class="name">Bridal Trial<small>Booked ahead of the day</small></span>
+            <span class="lead" aria-hidden="true"></span>
+            <span class="amt">GH&#8373;600</span>
+          </li>
+        </ul>
+
+        <p class="rate-card__note">
+          <strong>Please note:</strong> bridal pricing varies depending on the requirements, location,
+          number of services and overall package selected.
+        </p>
+
+        <div class="btn-row" style="margin-top:1.75rem">
+          <a class="btn btn--sm" href="contact.html?service=Bridal%20Makeup"><span>Enquire about a date</span></a>
+        </div>
+      </div>
+
+      <div class="price-grid" style="margin-top:clamp(2.5rem,5vw,4rem)">
         <div class="price-card glass reveal">
           <h3>The Session</h3>
           <p class="price-card__desc">Soft glam, full glam and celebration bookings for one person.</p>
@@ -439,8 +488,8 @@
           <span class="price-card__flag">Most booked</span>
           <h3>The Bride</h3>
           <p class="price-card__desc">The complete wedding-day service, from trial to final touch-up.</p>
-          <span class="price-card__amount"><span class="from">Quote</span> On request</span>
-          <p class="price-card__note">Travel across Ghana &amp; international</p>
+          <span class="price-card__amount"><span class="from">From</span> GH&#8373;800</span>
+          <p class="price-card__note">Six packages &mdash; see the rate card above</p>
           <ul class="tick-list">
             <li>Pre-booking consultation</li>
             <li>Optional bridal trial</li>
