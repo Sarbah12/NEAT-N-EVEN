@@ -31,7 +31,8 @@ BUSINESS = {
     "@type": ["BeautySalon", "HealthAndBeautyBusiness"],
     "@id": ORG_ID,
     "name": "Neat'n'Even Beauty Clinic",
-    "alternateName": "Neat n Even",
+    "alternateName": ["Neat n Even", "NeatnEven", "Neat and Even",
+                      "Neat'n'Even", "Neat n Even Beauty Clinic"],
     "url": SITE + '/',
     "logo": {"@type": "ImageObject", "url": f'{SITE}/assets/img/brand/logo.png'},
     "image": f'{SITE}/assets/img/brand/ceo.webp',
@@ -78,6 +79,16 @@ BUSINESS = {
                  "@type": "PriceSpecification", "minPrice": 600, "maxPrice": 800, "priceCurrency": "GHS"}},
         ]
     }
+}
+
+WEBSITE = {
+    "@type": "WebSite",
+    "@id": f'{SITE}/#website',
+    "url": SITE + '/',
+    "name": "Neat'n'Even Beauty Clinic",
+    "alternateName": ["Neat'n'Even", "NeatnEven", "Neat n Even"],
+    "inLanguage": "en",
+    "publisher": {"@id": ORG_ID}
 }
 
 PERSON = {
@@ -160,7 +171,7 @@ PAGES = {
               "artiste makeup. Glam from GHS 350, bridal from GHS 2,000. Call 055 147 3359."),
         og_image='/assets/img/brand/ceo.webp',
         og_type='website',
-        extra=[BUSINESS, PERSON],
+        extra=[BUSINESS, WEBSITE, PERSON],
         trail=None),
 
     'about/index.html': dict(
@@ -297,12 +308,14 @@ def main():
         f = root / rel
         t = f.read_text()
         head = build_head(rel, cfg)
-        new = re.sub(r'<head>.*?</head>', '<head>\n' + head + '\n</head>', t, count=1, flags=re.S)
-        if new == t:
-            print(f'!! head not replaced in {rel}')
+        new, n = re.subn(r'<head>.*?</head>', '<head>\n' + head + '\n</head>', t, count=1, flags=re.S)
+        if n == 0:
+            print(f'!! FAILED — no <head> block found in {rel}')
             continue
+        # unchanged is the normal case on a re-run; only a non-match is a problem
+        state = 'unchanged' if new == t else 'updated  '
         f.write_text(new)
-        print(f'✓ {rel:24} {cfg["title"][:52]}')
+        print(f'{state} {rel:24} {cfg["title"][:48]}')
 
     # sitemap
     urls = [(cfg['path'], p) for p, cfg in
