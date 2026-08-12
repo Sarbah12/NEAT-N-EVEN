@@ -91,7 +91,17 @@
             with the details already filled in.
           </p>
 
-          <form id="bookingForm" novalidate style="margin-top:2rem">
+          <!-- action/method make this a working plain-HTML POST even if the
+               JavaScript never runs. main.js intercepts submit and posts to
+               the /ajax/ endpoint instead, so the page does not navigate. -->
+          <form id="bookingForm" novalidate style="margin-top:2rem"
+                action="https://formsubmit.co/ayisijanet5@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Booking enquiry — Neat'n'Even website">
+            <input type="hidden" name="_template" value="table">
+            <!-- where FormSubmit returns people after a no-JS submission.
+                 Update this if the domain changes. -->
+            <input type="hidden" name="_next" value="https://www.neatneven.com/thank-you/">
+
             <div class="field-grid">
               <div class="field">
                 <label for="name">Full name <span class="req" aria-hidden="true">*</span></label>
@@ -151,10 +161,12 @@
               </div>
             </div>
 
-            <!-- honeypot: hidden from people, catches bots -->
+            <!-- honeypot: hidden from people, catches bots. Named _honey so
+                 FormSubmit also discards it server-side, which covers the
+                 no-JavaScript path where our own check never runs. -->
             <div class="visually-hidden" aria-hidden="true">
               <label for="company">Company (leave blank)</label>
-              <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
+              <input type="text" id="company" name="_honey" tabindex="-1" autocomplete="off">
             </div>
 
             <div class="form-actions">

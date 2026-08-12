@@ -415,7 +415,7 @@
       return {
         name: g('name'), email: g('email'), phone: g('phone'),
         service: g('service'), date: g('date'), location: g('location'),
-        people: g('people'), message: g('message'), company: g('company')
+        people: g('people'), message: g('message'), company: g('_honey')
       };
     }
 
@@ -476,6 +476,7 @@
       // hitting reply in the inbox goes straight back to the client
       payload.append('_replyto', d.email);
       payload.append('_template', 'table');
+      payload.append('_captcha', 'false');
 
       fetch(CONFIG.formEndpoint, {
         method: 'POST',
