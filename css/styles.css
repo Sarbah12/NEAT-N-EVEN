@@ -1864,19 +1864,157 @@ a.tag-pill:hover::before { background: var(--blush-deep); }
 .svc__media .arch { aspect-ratio: 4 / 5; }
 .svc__media .side-label { left: 0; }
 .svc__media .side-label--right { left: auto; right: 0; }
+/* The numeral used to be absolutely positioned over the top-right of the copy,
+   which collided with the longer headings once they wrapped. It now sits in a
+   reserved band at the top-left, so nothing can run into it at any width. */
 .svc__num {
   position: absolute;
   z-index: 3;
-  top: -0.4rem;
-  right: 0.6rem;
+  top: 0;
+  left: 0;
   font-family: var(--font-display);
-  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
   line-height: 1;
   color: var(--rose);
-  opacity: 0.22;
+  opacity: 0.3;
 }
-.svc__body { position: relative; }
+.svc__body {
+  position: relative;
+  padding-top: clamp(2.6rem, 5.2vw, 4rem);
+}
 .svc__panel { padding: clamp(1.5rem, 3vw, 2rem); margin-top: 1.5rem; }
+
+/* ---------- 17e. Founder cover ----------
+   Magazine-cover treatment: flat colour field, oversized brand initials
+   behind a cut-out portrait, corner credentials, a circled tag and a heavy
+   sans headline with one accent word. */
+.cover {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--rose);
+  color: var(--cream);
+  padding-top: clamp(1.25rem, 3vw, 2rem);
+}
+.cover__rule {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(248, 244, 240, 0.85);
+}
+.cover__rule .mid {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  color: var(--cream);
+}
+.cover__rule .side { display: none; }
+
+/* oversized initials sitting behind the figure */
+.cover__mark {
+  position: absolute;
+  z-index: -1;
+  /* sits to the right, clear of the bottom-left copy — cream-on-cream where
+     the two overlap is unreadable */
+  right: -3%;
+  top: clamp(2.5rem, 6vw, 4.5rem);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(15rem, 44vw, 34rem);
+  line-height: 0.72;
+  letter-spacing: -0.04em;
+  color: var(--cream);
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.cover__reg {
+  position: absolute;
+  z-index: 2;
+  top: clamp(3.5rem, 7vw, 5.5rem);
+  right: 0;
+  width: clamp(28px, 3.4vw, 44px);
+  aspect-ratio: 1;
+  border: 1.5px solid var(--cream);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: clamp(0.8rem, 1.4vw, 1.15rem);
+  font-family: var(--font-display);
+  color: var(--cream);
+}
+
+.cover__body {
+  position: relative;
+  display: grid;
+  align-items: end;
+  padding-top: clamp(2rem, 6vw, 4rem);
+}
+.cover__figure {
+  position: relative;
+  z-index: 1;
+  justify-self: center;
+  width: min(100%, 560px);
+  margin-bottom: -1px; /* sit flush on the section edge */
+}
+.cover__figure img {
+  width: 100%;
+  display: block;
+  filter: drop-shadow(0 30px 45px rgba(22, 17, 15, 0.35));
+}
+
+.cover__copy {
+  position: relative;
+  z-index: 2;
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+.cover__tag {
+  display: inline-grid;
+  place-items: center;
+  padding: 0.5rem 1.35rem;
+  border: 1.5px solid var(--cream);
+  border-radius: 50%;
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.9rem;
+}
+.cover__name {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 6vw, 4.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  color: var(--cream);
+  margin: 0;
+  text-transform: none;
+}
+.cover__role {
+  margin: 1rem 0 0;
+  font-size: clamp(0.72rem, 1.1vw, 0.85rem);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+.cover__role em {
+  font-style: italic;
+  font-weight: 700;
+  color: var(--gold);
+}
+.cover__text {
+  margin: 1.35rem 0 0;
+  max-width: 56ch;
+  font-size: clamp(0.92rem, 1.05vw, 1rem);
+  line-height: 1.7;
+  color: rgba(248, 244, 240, 0.9);
+}
+.cover__text strong { color: var(--cream); font-weight: 600; }
+.cover__cta { margin-top: 1.75rem; }
 
 /* ---------- 17d. Typographic normalisation ----------
    Tracking on the uppercase micro-labels had drifted between 0.14em and
@@ -1947,6 +2085,22 @@ a.tag-pill:hover::before { background: var(--blush-deep); }
 
 @media (min-width: 640px) {
   .contact-bar { grid-template-columns: repeat(3, 1fr); }
+  .cover__rule .side { display: block; }
+}
+
+@media (min-width: 800px) {
+  /* copy overlays the portrait, as on the reference cover */
+  .cover__figure {
+    grid-area: 1 / 1;
+    width: min(100%, 640px);
+    justify-self: center;
+  }
+  .cover__copy {
+    grid-area: 1 / 1;
+    align-self: end;
+    max-width: 560px;
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+  }
 }
 
 @media (min-width: 800px) {
