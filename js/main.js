@@ -11,11 +11,20 @@
     // WhatsApp number in international format, digits only (no +, no spaces).
     whatsapp: '233551473359',
 
-    // Email delivery for the booking form.
-    // Create a free form at https://formspree.io, then paste the endpoint it
-    // gives you here, e.g. 'https://formspree.io/f/xnqrgvbd'.
-    // While this is empty the email button tells people to use WhatsApp instead.
-    formEndpoint: ''
+    // Where booking enquiries are emailed.
+    notifyEmail: 'ayisijanet5@gmail.com',
+
+    // FormSubmit needs no account: it posts straight to the address above.
+    //
+    // ONE-TIME ACTIVATION — the very first submission triggers a confirmation
+    // email to that inbox. Nothing is delivered until the link in it is
+    // clicked, so send one test enquiry yourself and confirm it.
+    //
+    // THEN SWAP THIS: after activating, FormSubmit emails you a random alias
+    // like https://formsubmit.co/ajax/a1b2c3d4e5. Paste that here instead.
+    // It works identically but keeps the address out of the page source,
+    // where scrapers would otherwise harvest it for spam.
+    formEndpoint: 'https://formsubmit.co/ajax/ayisijanet5@gmail.com'
   };
 
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
@@ -392,6 +401,9 @@
         if (k !== 'company' && d[k]) payload.append(k, d[k]);
       });
       payload.append('_subject', 'Booking enquiry — ' + d.service + ' — ' + d.name);
+      // hitting reply in the inbox goes straight back to the client
+      payload.append('_replyto', d.email);
+      payload.append('_template', 'table');
 
       fetch(CONFIG.formEndpoint, {
         method: 'POST',

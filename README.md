@@ -19,22 +19,35 @@ Supporting files: `css/styles.css`, `js/main.js`, `js/gallery-data.js`,
 
 ## Things you need to fill in
 
-### 1. Email delivery for the booking form  ← required for the email button
+### 1. Email delivery — ONE ACTION NEEDED FROM YOU
 
-Open `js/main.js`. At the top:
+Booking enquiries are wired to **ayisijanet5@gmail.com** via FormSubmit, which
+needs no account.
+
+**Before it works, the address has to be confirmed once:**
+
+1. Open the live site's Contact page and send yourself a test enquiry.
+2. FormSubmit emails ayisijanet5@gmail.com an activation link. Open it and
+   confirm. (Check spam if it isn't there.)
+3. From then on every booking lands in that inbox, and hitting *Reply* goes
+   straight back to the client.
+
+**Then do this second step**, in `js/main.js`:
+
+After activating, FormSubmit sends you a random alias endpoint like
+`https://formsubmit.co/ajax/a1b2c3d4e5`. Paste it over `formEndpoint`. It
+behaves identically but keeps the Gmail address out of the page source, where
+spam bots would otherwise harvest it.
 
 ```js
 var CONFIG = {
   whatsapp: '233551473359',
-  formEndpoint: ''        // ← paste your Formspree endpoint here
+  notifyEmail: 'ayisijanet5@gmail.com',
+  formEndpoint: 'https://formsubmit.co/ajax/ayisijanet5@gmail.com'  // <- swap for the alias
 };
 ```
 
-Create a free form at [formspree.io](https://formspree.io) and paste the endpoint
-it gives you (looks like `https://formspree.io/f/xnqrgvbd`).
-
-Until this is filled in, the **Send enquiry by email** button tells visitors to
-use WhatsApp instead. **The WhatsApp button already works** — it opens a chat to
+**The WhatsApp button works right now** with no setup — it opens a chat to
 055 147 3359 with all the form details filled in.
 
 ### 2. Prices — bridal is done, two packages still open
