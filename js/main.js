@@ -32,6 +32,11 @@
     return Array.prototype.slice.call((root || document).querySelectorAll(sel));
   };
 
+  // Pages live in their own directory (/gallery/, /about/ …) so the URLs carry
+  // no .html. Paths in gallery-data.js are relative to the site root, so those
+  // pages declare data-base="../" to say how to get back there.
+  var BASE = (document.body && document.body.getAttribute('data-base')) || '';
+
   /* -----------------------------------------------------------------------
      Footer year
      -------------------------------------------------------------------- */
@@ -135,8 +140,8 @@
         flat.push({
           slug: cat.slug,
           label: cat.label,
-          full: item.full,
-          thumb: item.thumb,
+          full: BASE + item.full,
+          thumb: BASE + item.thumb,
           w: item.w, h: item.h, tw: item.tw, th: item.th
         });
       });
@@ -284,6 +289,73 @@
       touchX = null;
     }, { passive: true });
   }
+
+  /* -----------------------------------------------------------------------
+     Payment details — logo slots and copy-to-clipboard
+     -------------------------------------------------------------------- */
+
+  // Only reveal a payment logo once we know the file actually loaded, so a
+  // missing asset shows the typographic chip instead of a broken image.
+  $$('[data-logo-slot]').forEach(function (img) {
+    var show = function () { img.hidden = false; var c = img.parentNode.querySelector('.pay-chip'); if (c) c.remove(); };
+    if (img.complete && img.naturalWidth > 0) { show(); return; }
+    img.addEventListener('load', function () { if (img.naturalWidth > 0) show(); });
+    // no listener needed for error: the element simply stays hidden
+  });
+
+  $$('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var value = btn.getAttribute('data-copy') || '';
+      var label = btn.querySelector('span');
+      var targetId = btn.getAttribute('data-copy-target');
+
+      var done = function (ok) {
+        btn.classList.toggle('is-copied', ok);
+        label.textContent = ok ? 'Copied' : 'Select & copy';
+        if (!ok) selectNumber();
+        setTimeout(function () {
+          btn.classList.remove('is-copied');
+          label.textContent = 'Copy';
+        }, 2200);
+      };
+
+      // If we cannot write to the clipboard, highlight the number on the page
+      // so Cmd/Ctrl+C actually does something — telling someone to press it
+      // with nothing selected is worse than saying nothing.
+      function selectNumber() {
+        var node = targetId && document.getElementById(targetId);
+        if (!node || !window.getSelection) return;
+        try {
+          var range = document.createRange();
+          range.selectNodeContents(node);
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        } catch (e) { /* selection unsupported — nothing more we can do */ }
+      }
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(value).then(function () { done(true); },
+                                                  function () { fallback(); });
+      } else {
+        fallback();
+      }
+
+      // the clipboard API needs a secure context; file:// and plain http fall here
+      function fallback() {
+        var ta = document.createElement('textarea');
+        ta.value = value;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:0;left:-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+        document.body.removeChild(ta);
+        done(ok);
+      }
+    });
+  });
 
   /* -----------------------------------------------------------------------
      Booking form
