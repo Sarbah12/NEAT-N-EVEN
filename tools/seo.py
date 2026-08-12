@@ -18,6 +18,12 @@ import re
 import datetime
 
 SITE = 'https://www.neatneven.com'          # ← change to move domains
+
+# Google Search Console verification. Paste ONLY the content="..." value from
+# the HTML tag Google gives you, e.g. 'AbCdEf123...'. Leave '' if unused.
+GOOGLE_VERIFY = ''
+# Bing Webmaster Tools, same idea. Optional.
+BING_VERIFY = ''
 PHONE = '+233551473359'
 IG = 'https://www.instagram.com/neat_n_even_'
 TT = 'https://www.tiktok.com/@neat_n_even_'
@@ -264,6 +270,12 @@ def build_head(rel, cfg):
         '<meta name="author" content="Neat\'n\'Even Beauty Clinic">',
         '<meta name="geo.region" content="GH-AA">',
         '<meta name="geo.placename" content="Accra">',
+    ]
+    if GOOGLE_VERIFY:
+        lines.append(f'<meta name="google-site-verification" content="{GOOGLE_VERIFY}">')
+    if BING_VERIFY:
+        lines.append(f'<meta name="msvalidate.01" content="{BING_VERIFY}">')
+    lines += [
         '',
         f'<meta property="og:type" content="{cfg["og_type"]}">',
         f'<meta property="og:site_name" content="Neat\'n\'Even Beauty Clinic">',

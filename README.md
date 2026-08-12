@@ -134,6 +134,37 @@ BreadcrumbList and ImageGallery.
 as real breaks Google's guidelines and can get the site penalised. Add it only
 once the testimonials are genuine.
 
+## Submitting to Google
+
+The site is live at https://www.neatneven.com/ (Vercel, auto-deploys on push to
+`main`). Technically it is fully crawlable — the only thing standing between it
+and Google is that the domain is new and has not been crawled yet.
+
+**1. Google Search Console** — https://search.google.com/search-console
+   Add property → *URL prefix* → `https://www.neatneven.com`
+
+**2. Verify.** Choose the *HTML tag* method. Google shows a tag like:
+   `<meta name="google-site-verification" content="AbCdEf123..." />`
+   Copy only the `content` value into `GOOGLE_VERIFY` in `tools/seo.py`, run
+   `python3 tools/seo.py`, commit and push. Vercel deploys it in about a minute,
+   then press Verify.
+
+**3. Submit the sitemap.** Search Console → *Sitemaps* → enter `sitemap.xml`.
+
+**4. Request indexing.** Search Console → *URL Inspection* → paste
+   `https://www.neatneven.com/` → *Request Indexing*. Repeat for `/services/`
+   and `/gallery/`.
+
+**5. Google Business Profile** — https://business.google.com
+   This matters more than everything above for "makeup artist near me" style
+   searches in Accra. It is a separate listing from the website and it is free.
+
+**6. Optional: Bing** — https://www.bing.com/webmasters — same flow, put the
+   code in `BING_VERIFY`.
+
+Expect days, not hours. Linking the site from the Instagram and TikTok bios is
+the fastest way for Google to discover a brand-new domain.
+
 ## Running it locally
 
 ```bash
