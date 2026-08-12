@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio — Neat'n'Even Beauty Clinic | Bridal, Glam &amp; Editorial Makeup Gallery</title>
+<meta name="description" content="Browse 52 makeup looks by Neat'n'Even Beauty Clinic — bridal, pre-wedding, bridesmaids, soft glam, full glam, birthday glam, avant garde and photoshoot work from Accra, Ghana.">
+<link rel="canonical" href="https://neatneven.com/gallery.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Portfolio — Neat'n'Even Beauty Clinic">
+<meta property="og:description" content="Bridal, glam, editorial and artiste makeup by Janet Ayisi.">
+<meta property="og:image" content="https://neatneven.com/assets/img/gallery/bridal/bridal-02.webp">
+<meta name="theme-color" content="#16110F">
+<link rel="icon" href="assets/img/brand/mark.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="siteHeader">
+  <div class="container">
+    <a class="brand" href="index.html" aria-label="Neat'n'Even Beauty Clinic — home">
+      <img src="assets/img/brand/mark.png" alt="" width="120" height="92">
+      <span class="brand-name">Neat&rsquo;n&rsquo;Even<small>Beauty Clinic</small></span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html" aria-current="page">Portfolio</a></li>
+        <li><a href="academy.html">Academy</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn--sm" href="contact.html"><span>Book a session</span></a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="gallery.html" aria-current="page">Portfolio</a></li>
+    <li><a href="academy.html">Academy</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="mobile-nav-foot">
+    <span class="meta">Accra, Ghana &middot; Available worldwide</span>
+    <a class="btn btn--block" href="contact.html"><span>Book a session</span></a>
+    <a class="btn btn--ghost btn--block" href="tel:+233551473359"><span>055 147 3359</span></a>
+  </div>
+</div>
+
+<main id="main">
+
+  <section class="page-hero">
+    <img class="page-hero-mark" src="assets/img/brand/mark.png" alt="" aria-hidden="true" width="380" height="290">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a> <span aria-hidden="true">/</span> <span>Portfolio</span>
+      </nav>
+      <p class="eyebrow">Portfolio</p>
+      <h1>The work</h1>
+      <p class="lede">
+        Fifty-two looks across bridal, glam, celebration, editorial and photoshoot work. Filter by category,
+        or tap any image to view it full size.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container container--wide">
+
+      <div class="filter-bar" id="filterBar" role="group" aria-label="Filter portfolio by category">
+        <!-- filter chips are injected by js/main.js -->
+      </div>
+
+      <div class="masonry" id="galleryGrid">
+        <!-- gallery items are injected by js/main.js from js/gallery-data.js -->
+      </div>
+
+      <noscript>
+        <p class="gallery-empty">
+          The portfolio gallery needs JavaScript enabled. You can still see our work on
+          <a href="https://instagram.com/neat_n_even" target="_blank" rel="noopener">Instagram @neat_n_even</a>.
+        </p>
+      </noscript>
+
+      <p class="gallery-empty" id="galleryEmpty" hidden>No looks in this category yet.</p>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container">
+      <p class="eyebrow eyebrow--center reveal">Like what you see?</p>
+      <h2 class="reveal reveal-d1">Let&rsquo;s create yours</h2>
+      <p class="lede reveal reveal-d2">
+        Send us a reference from the portfolio and the date you have in mind &mdash; we&rsquo;ll build the look around you.
+      </p>
+      <div class="btn-row reveal reveal-d3">
+        <a class="btn btn--rose" href="contact.html"><span>Book a session</span></a>
+        <a class="btn btn--light" href="https://instagram.com/neat_n_even" target="_blank" rel="noopener"><span>More on Instagram</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" aria-hidden="true">
+  <button class="lightbox-btn lightbox-close" id="lbClose" aria-label="Close viewer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <button class="lightbox-btn lightbox-prev" id="lbPrev" aria-label="Previous image">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+  </button>
+  <button class="lightbox-btn lightbox-next" id="lbNext" aria-label="Next image">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+  </button>
+  <figure style="margin:0;display:grid;justify-items:center">
+    <img id="lbImage" src="" alt="">
+    <figcaption class="lightbox-caption" id="lbCaption"></figcaption>
+  </figure>
+</div>
+
+<footer class="site-footer">
+  <div class="container container--wide">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/img/brand/logo.png" alt="Neat'n'Even Beauty Clinic" width="240" height="185" loading="lazy">
+        <p>Professional makeup artistry and beauty services for brides, special occasions, photoshoots, artistes and media personalities.</p>
+        <div class="socials">
+          <a href="https://instagram.com/neat_n_even" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://tiktok.com/@neat_n_even" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.3 2.1 1.6 3.6 3.5 3.9v2.6c-1.3.1-2.6-.3-3.7-1v5.9c0 4.9-5.3 6.4-8 3.2-1.9-2.3-1.1-6.2 2.4-6.9.6-.1 1.2-.1 1.8 0v2.7c-1.6-.5-2.9.6-2.6 2 .2 1.3 1.8 1.9 2.9 1 .5-.4.7-1 .7-1.9V3z"/></svg>
+          </a>
+          <a href="https://wa.me/233551473359" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1012 2zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.8-.6-3.1-1.3-5.1-4.4-5.3-4.7-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5.2.6.8 2 .9 2.1.1.2.1.3 0 .5-.1.2-.2.3-.3.5l-.5.5c-.2.2-.3.3-.2.6.2.3.8 1.4 1.8 2.2 1.2 1.1 2.2 1.4 2.5 1.6.3.1.5.1.6-.1s.7-.9.9-1.2c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.6.3.1.3.1.8-.1 1.5z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="gallery.html">Portfolio</a></li>
+          <li><a href="academy.html">Academy</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="gallery.html#bridal">Bridal</a></li>
+          <li><a href="gallery.html#soft-glam">Soft Glam</a></li>
+          <li><a href="gallery.html#full-glam">Full Glam</a></li>
+          <li><a href="gallery.html#birthday-glam">Birthday Glam</a></li>
+          <li><a href="gallery.html#avant-garde">Avant Garde</a></li>
+          <li><a href="gallery.html#photoshoot">Photoshoot</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="tel:+233551473359">055 147 3359</a></li>
+          <li><a href="https://wa.me/233551473359" target="_blank" rel="noopener">WhatsApp us</a></li>
+          <li>Accra, Ghana</li>
+          <li><a href="https://instagram.com/neat_n_even" target="_blank" rel="noopener">@neat_n_even</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year">2026</span> Neat&rsquo;n&rsquo;Even Beauty Clinic. All rights reserved.</span>
+      <span>Your beauty. Your confidence. Our artistry.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" id="waFloat" href="https://wa.me/233551473359?text=Hello%20Neat'n'Even%2C%20I'd%20like%20to%20book%20a%20session." target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1012 2zm5.6 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.8-.6-3.1-1.3-5.1-4.4-5.3-4.7-.2-.2-1.3-1.7-1.3-3.2s.8-2.3 1.1-2.6c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5.2.6.8 2 .9 2.1.1.2.1.3 0 .5-.1.2-.2.3-.3.5l-.5.5c-.2.2-.3.3-.2.6.2.3.8 1.4 1.8 2.2 1.2 1.1 2.2 1.4 2.5 1.6.3.1.5.1.6-.1s.7-.9.9-1.2c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.6.3.1.3.1.8-.1 1.5z"/></svg>
+</a>
+
+<script src="js/gallery-data.js"></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
