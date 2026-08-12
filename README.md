@@ -76,23 +76,24 @@ replace the amount:
 <span class="price-card__amount"><span class="from">From</span> GH&#8373;1,200</span>
 ```
 
-### 3. Payment logos
+### 3. Payment logos — Stanbic still needed
 
-The payment section on `/contact/` shows typographic chips for MTN Mobile Money
-and Stanbic Bank. To use the official logos, drop the files in as:
+The MTN Mobile Money logo is in place at `assets/img/pay/mtn-momo.png`.
+
+**Stanbic is still showing a typographic chip.** To use the real logo, save the
+Stanbic Bank artwork to your machine and drop it in as:
 
 ```
-assets/img/pay/mtn-momo.png
 assets/img/pay/stanbic.png
 ```
 
-They appear automatically — `js/main.js` only reveals the `<img>` once the file
-actually loads, so a missing logo shows the chip rather than a broken image.
-Once a logo is showing you can delete the matching `<span class="pay-chip">`.
+It appears automatically — `js/main.js` only reveals the `<img>` once the file
+genuinely loads, so a missing logo shows the chip rather than a broken image.
+Once the logo shows you can delete the matching `<span class="pay-chip">`.
 
-Also worth adding: the **registered account name** for the Stanbic account.
+Also worth adding: the **registered account name** on the Stanbic account.
 Clients usually need it to complete a transfer. There is a `TODO` comment
-marking the spot.
+marking the spot in `contact/index.html`.
 
 ### 4. Testimonials
 
