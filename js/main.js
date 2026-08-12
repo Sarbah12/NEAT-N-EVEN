@@ -410,12 +410,26 @@
         body: payload,
         headers: { Accept: 'application/json' }
       }).then(function (res) {
-        if (!res.ok) throw new Error('Request failed: ' + res.status);
+        return res.text().then(function (raw) {
+          var data = {};
+          try { data = JSON.parse(raw); } catch (e) { /* not JSON */ }
+          return { res: res, data: data, raw: raw };
+        });
+      }).then(function (r) {
+        // FormSubmit answers 200 OK with success:"false" when the address has
+        // not been activated yet. Trusting res.ok alone told the client their
+        // booking had been sent when nothing was delivered.
+        if (!r.res.ok || String(r.data.success) === 'false') {
+          throw new Error(r.data.message || 'Request failed: ' + r.res.status);
+        }
         form.reset();
         showStatus('ok', 'Thank you — your enquiry is on its way. We usually reply the same day.');
-      }).catch(function () {
+      }).catch(function (err) {
+        // exact reason for whoever maintains the site; visitors get the fallback
+        if (window.console) console.warn('[booking form] not delivered:', err && err.message);
         showStatus('err',
-          'Something went wrong sending that. Please try the WhatsApp button instead, or call 055 147 3359.');
+          'Sorry — we could not send that just now. Please use the "Send on WhatsApp" ' +
+          'button below, or call 055 147 3359. We will get straight back to you.');
       }).then(function () {
         submitBtn.disabled = false;
         submitBtn.innerHTML = original;

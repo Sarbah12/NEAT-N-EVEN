@@ -24,13 +24,19 @@ Supporting files: `css/styles.css`, `js/main.js`, `js/gallery-data.js`,
 Booking enquiries are wired to **ayisijanet5@gmail.com** via FormSubmit, which
 needs no account.
 
-**Before it works, the address has to be confirmed once:**
+**Before it works, the address has to be confirmed once.** The activation
+email has already been triggered — it is sitting in that inbox now:
 
-1. Open the live site's Contact page and send yourself a test enquiry.
-2. FormSubmit emails ayisijanet5@gmail.com an activation link. Open it and
-   confirm. (Check spam if it isn't there.)
-3. From then on every booking lands in that inbox, and hitting *Reply* goes
+1. Open **ayisijanet5@gmail.com** and look for a mail from FormSubmit with the
+   subject line about confirming your email / activating your form.
+2. **Check Spam and the Promotions tab** — it very often lands there.
+3. Click **Activate Form** in it.
+4. From then on every booking lands in that inbox, and hitting *Reply* goes
    straight back to the client.
+
+Until that link is clicked, FormSubmit accepts the request but delivers
+nothing. The form correctly tells visitors to use WhatsApp instead while that
+is the case — it does not claim the booking was sent.
 
 **Then do this second step**, in `js/main.js`:
 
