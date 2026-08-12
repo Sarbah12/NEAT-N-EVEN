@@ -371,6 +371,14 @@
     // don't offer dates in the past
     if (dateField) dateField.min = new Date().toISOString().split('T')[0];
 
+    // Keep the no-JS redirect target pointing at whatever host we are actually
+    // on, so it is right on localhost, github.io and the live domain alike.
+    var nextField = form.querySelector('input[name="_next"]');
+    if (nextField) {
+      var thanks = new URL((BASE || './') + 'thank-you/', location.href).href;
+      nextField.value = thanks;
+    }
+
     // prefill the service from e.g. contact.html?service=Bridal%20Makeup
     var wanted = new URLSearchParams(location.search).get('service');
     if (wanted) {

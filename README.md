@@ -113,6 +113,27 @@ Six files reference `https://neatneven.com` in their `<link rel="canonical">`,
 Open Graph tags, `robots.txt` and `sitemap.xml`. Find and replace that with your
 real domain once you have one.
 
+## SEO
+
+All titles, meta descriptions, Open Graph/Twitter tags, JSON-LD structured data,
+`sitemap.xml` and `robots.txt` are generated from one file:
+
+```bash
+python3 tools/seo.py
+```
+
+Edit `tools/seo.py` and re-run — do not hand-edit the `<head>` blocks, they get
+overwritten. **To move to a different domain, change `SITE` at the top and
+re-run.** That updates every canonical, OG tag, sitemap entry and schema ID.
+
+Structured data included: LocalBusiness/BeautySalon with the real price list,
+Person (Janet), Course (Makeup & Sip, GHS 800), FAQPage on services and academy,
+BreadcrumbList and ImageGallery.
+
+**Not included, on purpose: review/rating schema.** Marking up invented reviews
+as real breaks Google's guidelines and can get the site penalised. Add it only
+once the testimonials are genuine.
+
 ## Running it locally
 
 ```bash
