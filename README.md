@@ -129,6 +129,25 @@ Edit `tools/seo.py` and re-run — do not hand-edit the `<head>` blocks, they ge
 overwritten. **To move to a different domain, change `SITE` at the top and
 re-run.** That updates every canonical, OG tag, sitemap entry and schema ID.
 
+### Pre-rendering the portfolio
+
+`gallery/index.html` used to ship an empty grid — all 52 photographs were
+injected by JavaScript, so crawlers saw 170 words and no images. The grid is now
+written into the HTML at build time:
+
+```bash
+python3 tools/gallery.py
+```
+
+**Re-run this whenever the photo set changes**, after regenerating
+`js/gallery-data.js`. It rewrites the filter chips, the 52 tiles (each with
+unique descriptive alt text) and the category notes between marker comments.
+`js/main.js` detects the existing markup and only wires up filtering and the
+lightbox, so behaviour is unchanged.
+
+`tools/seo.py` also emits an image sitemap listing all 52 photographs, which is
+what gets the portfolio into Google Images.
+
 Structured data included: LocalBusiness/BeautySalon with the real price list,
 Person (Janet), Course (Makeup & Sip, GHS 800), FAQPage on services and academy,
 BreadcrumbList and ImageGallery.

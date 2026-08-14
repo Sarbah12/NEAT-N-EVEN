@@ -152,21 +152,27 @@
       data.map(function (c) { return { slug: c.slug, label: c.label, count: c.items.length }; })
     );
 
-    filterBar.innerHTML = chips.map(function (c) {
-      return '<button class="filter-chip" type="button" data-filter="' + c.slug + '" ' +
-             'aria-pressed="' + (c.slug === 'all') + '">' + c.label +
-             '<span class="count">' + c.count + '</span></button>';
-    }).join('');
+    // The chips and tiles are pre-rendered into the HTML by tools/gallery.py so
+    // crawlers see all 52 images without executing JavaScript. Only build them
+    // here if that markup is absent, then enhance whatever is on the page.
+    if (!filterBar.querySelector('.filter-chip')) {
+      filterBar.innerHTML = chips.map(function (c) {
+        return '<button class="filter-chip" type="button" data-filter="' + c.slug + '" ' +
+               'aria-pressed="' + (c.slug === 'all') + '">' + c.label +
+               '<span class="count">' + c.count + '</span></button>';
+      }).join('');
+    }
 
-    // --- tiles ---
-    grid.innerHTML = flat.map(function (it, i) {
-      return '<button class="masonry-item" type="button" data-index="' + i + '" ' +
-             'data-slug="' + it.slug + '" aria-label="View ' + it.label + ' look ' + (i + 1) + ' full size">' +
-             '<img src="' + it.thumb + '" alt="' + it.label + ' makeup by Neat\'n\'Even Beauty Clinic" ' +
-             'width="' + it.tw + '" height="' + it.th + '" loading="lazy" decoding="async">' +
-             '<span class="masonry-item__label">' + it.label + '</span>' +
-             '</button>';
-    }).join('');
+    if (!grid.querySelector('.masonry-item')) {
+      grid.innerHTML = flat.map(function (it, i) {
+        return '<button class="masonry-item" type="button" data-index="' + i + '" ' +
+               'data-slug="' + it.slug + '" aria-label="View ' + it.label + ' look ' + (i + 1) + ' full size">' +
+               '<img src="' + it.thumb + '" alt="' + it.label + ' makeup by Neat\'n\'Even Beauty Clinic" ' +
+               'width="' + it.tw + '" height="' + it.th + '" loading="lazy" decoding="async">' +
+               '<span class="masonry-item__label">' + it.label + '</span>' +
+               '</button>';
+      }).join('');
+    }
 
     var tiles = $$('.masonry-item', grid);
     var current = 'all';

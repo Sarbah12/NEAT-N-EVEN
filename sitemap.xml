@@ -1,38 +1,247 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.neatneven.com/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.neatneven.com/about/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.neatneven.com/services/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.neatneven.com/gallery/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/bridal/bridal-01.webp</image:loc>
+      <image:title>Bridal makeup look 1 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/bridal/bridal-02.webp</image:loc>
+      <image:title>Bridal makeup look 2 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/bridal/bridal-03.webp</image:loc>
+      <image:title>Bridal makeup look 3 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/bridal/bridal-04.webp</image:loc>
+      <image:title>Bridal makeup look 4 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/bridal/bridal-05.webp</image:loc>
+      <image:title>Bridal makeup look 5 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/bridal/bridal-06.webp</image:loc>
+      <image:title>Bridal makeup look 6 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/bridal/bridal-07.webp</image:loc>
+      <image:title>Bridal makeup look 7 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/bridal/bridal-08.webp</image:loc>
+      <image:title>Bridal makeup look 8 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/bridal/bridal-09.webp</image:loc>
+      <image:title>Bridal makeup look 9 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/bridal/bridal-10.webp</image:loc>
+      <image:title>Bridal makeup look 10 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/bridal/bridal-11.webp</image:loc>
+      <image:title>Bridal makeup look 11 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/bridal/bridal-12.webp</image:loc>
+      <image:title>Bridal makeup look 12 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/bridal/bridal-13.webp</image:loc>
+      <image:title>Bridal makeup look 13 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/pre-wedding/pre-wedding-01.webp</image:loc>
+      <image:title>Pre-Wedding makeup look 1 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/pre-wedding/pre-wedding-02.webp</image:loc>
+      <image:title>Pre-Wedding makeup look 2 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/bridesmaids/bridesmaids-01.webp</image:loc>
+      <image:title>Bridesmaids makeup look 1 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/soft-glam/soft-glam-01.webp</image:loc>
+      <image:title>Soft Glam makeup look 1 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/soft-glam/soft-glam-02.webp</image:loc>
+      <image:title>Soft Glam makeup look 2 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/soft-glam/soft-glam-03.webp</image:loc>
+      <image:title>Soft Glam makeup look 3 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/soft-glam/soft-glam-04.webp</image:loc>
+      <image:title>Soft Glam makeup look 4 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/full-glam/full-glam-01.webp</image:loc>
+      <image:title>Full Glam makeup look 1 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/full-glam/full-glam-02.webp</image:loc>
+      <image:title>Full Glam makeup look 2 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/full-glam/full-glam-03.webp</image:loc>
+      <image:title>Full Glam makeup look 3 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/full-glam/full-glam-04.webp</image:loc>
+      <image:title>Full Glam makeup look 4 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/full-glam/full-glam-05.webp</image:loc>
+      <image:title>Full Glam makeup look 5 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/birthday-glam/birthday-glam-01.webp</image:loc>
+      <image:title>Birthday Glam makeup look 1 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/birthday-glam/birthday-glam-02.webp</image:loc>
+      <image:title>Birthday Glam makeup look 2 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/birthday-glam/birthday-glam-03.webp</image:loc>
+      <image:title>Birthday Glam makeup look 3 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/birthday-glam/birthday-glam-04.webp</image:loc>
+      <image:title>Birthday Glam makeup look 4 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/birthday-glam/birthday-glam-05.webp</image:loc>
+      <image:title>Birthday Glam makeup look 5 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/birthday-glam/birthday-glam-06.webp</image:loc>
+      <image:title>Birthday Glam makeup look 6 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/birthday-glam/birthday-glam-07.webp</image:loc>
+      <image:title>Birthday Glam makeup look 7 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/birthday-glam/birthday-glam-08.webp</image:loc>
+      <image:title>Birthday Glam makeup look 8 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/birthday-glam/birthday-glam-09.webp</image:loc>
+      <image:title>Birthday Glam makeup look 9 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/birthday-glam/birthday-glam-10.webp</image:loc>
+      <image:title>Birthday Glam makeup look 10 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/birthday-glam/birthday-glam-11.webp</image:loc>
+      <image:title>Birthday Glam makeup look 11 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/birthday-glam/birthday-glam-12.webp</image:loc>
+      <image:title>Birthday Glam makeup look 12 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/avant-garde/avant-garde-01.webp</image:loc>
+      <image:title>Avant Garde makeup look 1 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/avant-garde/avant-garde-02.webp</image:loc>
+      <image:title>Avant Garde makeup look 2 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/avant-garde/avant-garde-03.webp</image:loc>
+      <image:title>Avant Garde makeup look 3 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/avant-garde/avant-garde-04.webp</image:loc>
+      <image:title>Avant Garde makeup look 4 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/avant-garde/avant-garde-05.webp</image:loc>
+      <image:title>Avant Garde makeup look 5 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/avant-garde/avant-garde-06.webp</image:loc>
+      <image:title>Avant Garde makeup look 6 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/avant-garde/avant-garde-07.webp</image:loc>
+      <image:title>Avant Garde makeup look 7 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/avant-garde/avant-garde-08.webp</image:loc>
+      <image:title>Avant Garde makeup look 8 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/photoshoot/photoshoot-01.webp</image:loc>
+      <image:title>Photoshoot makeup look 1 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/photoshoot/photoshoot-02.webp</image:loc>
+      <image:title>Photoshoot makeup look 2 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/photoshoot/photoshoot-03.webp</image:loc>
+      <image:title>Photoshoot makeup look 3 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/photoshoot/photoshoot-04.webp</image:loc>
+      <image:title>Photoshoot makeup look 4 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/photoshoot/photoshoot-05.webp</image:loc>
+      <image:title>Photoshoot makeup look 5 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/photoshoot/photoshoot-06.webp</image:loc>
+      <image:title>Photoshoot makeup look 6 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neatneven.com/assets/img/gallery/photoshoot/photoshoot-07.webp</image:loc>
+      <image:title>Photoshoot makeup look 7 — Neat'n'Even Beauty Clinic, Accra</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.neatneven.com/academy/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.neatneven.com/contact/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

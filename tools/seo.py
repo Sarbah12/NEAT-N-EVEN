@@ -334,14 +334,32 @@ def main():
             [(v['path'], v) for v in PAGES.values()]]
     prio = {'/': '1.0', '/services/': '0.9', '/gallery/': '0.8',
             '/about/': '0.8', '/contact/': '0.8', '/academy/': '0.7'}
+    # image sitemap: the 52 portfolio photographs are the strongest asset on the
+    # site, and this is what gets them into Google Images
+    import json as _json, re as _re
+    gal = _json.loads(_re.search(r'=\s*(\[.*\]);',
+                                 (root / 'js' / 'gallery-data.js').read_text(), _re.S).group(1))
+    def esc(s):
+        return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+
     xml = ['<?xml version="1.0" encoding="UTF-8"?>',
-           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+           '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">']
     for cfg in PAGES.values():
         p = cfg['path']
         xml += ['  <url>', f'    <loc>{SITE}{p}</loc>',
                 f'    <lastmod>{TODAY}</lastmod>',
                 f'    <changefreq>{"weekly" if p in ("/", "/gallery/") else "monthly"}</changefreq>',
-                f'    <priority>{prio.get(p, "0.7")}</priority>', '  </url>']
+                f'    <priority>{prio.get(p, "0.7")}</priority>']
+        if p == '/gallery/':
+            for cat in gal:
+                for i, item in enumerate(cat['items'], 1):
+                    title = esc(f"{cat['label']} makeup look {i} — Neat'n'Even Beauty Clinic, Accra")
+                    xml += ['    <image:image>',
+                            f'      <image:loc>{SITE}/{item["full"]}</image:loc>',
+                            f'      <image:title>{title}</image:title>',
+                            '    </image:image>']
+        xml.append('  </url>')
     xml.append('</urlset>')
     (root / 'sitemap.xml').write_text('\n'.join(xml) + '\n')
     (root / 'robots.txt').write_text(
