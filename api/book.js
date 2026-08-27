@@ -10,14 +10,22 @@
  *   RESEND_FROM      optional   "Neat'n'Even <bookings@neatneven.com>"
  *                               defaults to Resend's shared test sender, which
  *                               can only deliver to the account owner's address
- *   BOOKING_TO       optional   defaults to ayisijanet5@gmail.com
+ *   BOOKING_TO       optional   defaults to richsarbah11@gmail.com (see note below)
  *
  * Handles both paths:
  *   - fetch() with JSON  -> replies with JSON (the normal, JS-enabled path)
  *   - a plain form POST  -> 303 redirect to /thank-you/ (works without JS)
  */
 
-const TO_DEFAULT = 'ayisijanet5@gmail.com';
+// Resend's shared sender only delivers to the address that owns the Resend
+// account, which is richsarbah11@gmail.com. Sending to Janet directly is
+// rejected until neatneven.com is verified at resend.com/domains. Until then
+// enquiries land here and get forwarded on.
+//
+// TO SWITCH TO JANET: verify the domain, then set BOTH env vars in Vercel —
+//   RESEND_FROM = Neat'n'Even <bookings@neatneven.com>
+//   BOOKING_TO  = ayisijanet5@gmail.com
+const TO_DEFAULT = 'richsarbah11@gmail.com';
 const FROM_DEFAULT = 'Neat\'n\'Even Bookings <onboarding@resend.dev>';
 
 const FIELDS = ['name', 'email', 'phone', 'service', 'date', 'location', 'people', 'message'];
