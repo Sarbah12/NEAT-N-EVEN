@@ -148,7 +148,16 @@ module.exports = async (req, res) => {
     if (!r.ok) {
       const detail = await r.text();
       console.error('[book] Resend rejected the send:', r.status, detail.slice(0, 400));
-      return fail(502, 'Could not send the enquiry');
+      // Surface Resend's own reason on configuration errors (bad key, sender not
+      // verified, sandbox recipient limits). These are the owner's to fix and the
+      // text carries no secret — the key is never echoed back. Genuine 5xx
+      // outages stay generic.
+      let reason = '';
+      if (r.status >= 400 && r.status < 500) {
+        try { reason = (JSON.parse(detail).message || '').slice(0, 200); }
+        catch (e) { reason = detail.slice(0, 200); }
+      }
+      return fail(502, reason ? `Email service rejected the send: ${reason}` : 'Could not send the enquiry');
     }
   } catch (err) {
     console.error('[book] Resend request failed:', err && err.message);
