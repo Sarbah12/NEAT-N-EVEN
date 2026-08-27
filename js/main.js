@@ -14,17 +14,10 @@
     // Where booking enquiries are emailed.
     notifyEmail: 'ayisijanet5@gmail.com',
 
-    // FormSubmit needs no account: it posts straight to the address above.
-    //
-    // ONE-TIME ACTIVATION — the very first submission triggers a confirmation
-    // email to that inbox. Nothing is delivered until the link in it is
-    // clicked, so send one test enquiry yourself and confirm it.
-    //
-    // THEN SWAP THIS: after activating, FormSubmit emails you a random alias
-    // like https://formsubmit.co/ajax/a1b2c3d4e5. Paste that here instead.
-    // It works identically but keeps the address out of the page source,
-    // where scrapers would otherwise harvest it for spam.
-    formEndpoint: 'https://formsubmit.co/ajax/ayisijanet5@gmail.com'
+    // Our own serverless function (api/book.js), which sends via Resend.
+    // The API key lives in Vercel's environment variables, never here — a key
+    // in client-side JavaScript can be lifted from view-source by anyone.
+    formEndpoint: '/api/book'
   };
 
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
@@ -377,14 +370,6 @@
     // don't offer dates in the past
     if (dateField) dateField.min = new Date().toISOString().split('T')[0];
 
-    // Keep the no-JS redirect target pointing at whatever host we are actually
-    // on, so it is right on localhost, github.io and the live domain alike.
-    var nextField = form.querySelector('input[name="_next"]');
-    if (nextField) {
-      var thanks = new URL((BASE || './') + 'thank-you/', location.href).href;
-      nextField.value = thanks;
-    }
-
     // prefill the service from e.g. contact.html?service=Bridal%20Makeup
     var wanted = new URLSearchParams(location.search).get('service');
     if (wanted) {
@@ -482,20 +467,18 @@
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<span>Sending…</span>';
 
-      var payload = new FormData();
+      // JSON, not FormData: fetch sends FormData as multipart/form-data, which
+      // the serverless runtime does not parse into req.body.
+      var payload = {};
       Object.keys(d).forEach(function (k) {
-        if (k !== 'company' && d[k]) payload.append(k, d[k]);
+        if (k !== 'company' && d[k]) payload[k] = d[k];
       });
-      payload.append('_subject', 'Booking enquiry — ' + d.service + ' — ' + d.name);
-      // hitting reply in the inbox goes straight back to the client
-      payload.append('_replyto', d.email);
-      payload.append('_template', 'table');
-      payload.append('_captcha', 'false');
+      payload._honey = d.company;   // the honeypot input is name="_honey"
 
       fetch(CONFIG.formEndpoint, {
         method: 'POST',
-        body: payload,
-        headers: { Accept: 'application/json' }
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' }
       }).then(function (res) {
         return res.text().then(function (raw) {
           var data = {};
@@ -503,11 +486,10 @@
           return { res: res, data: data, raw: raw };
         });
       }).then(function (r) {
-        // FormSubmit answers 200 OK with success:"false" when the address has
-        // not been activated yet. Trusting res.ok alone told the client their
-        // booking had been sent when nothing was delivered.
-        if (!r.res.ok || String(r.data.success) === 'false') {
-          throw new Error(r.data.message || 'Request failed: ' + r.res.status);
+        // Never trust the HTTP status alone — a 200 carrying an error body once
+        // told clients their booking had been sent when nothing was delivered.
+        if (!r.res.ok || r.data.ok !== true) {
+          throw new Error(r.data.error || r.data.message || 'Request failed: ' + r.res.status);
         }
         form.reset();
         showStatus('ok', 'Thank you — your enquiry is on its way. We usually reply the same day.');

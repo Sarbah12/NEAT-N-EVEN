@@ -25,45 +25,51 @@ Supporting files: `css/styles.css`, `js/main.js`, `js/gallery-data.js`,
 
 ## Things you need to fill in
 
-### 1. Email delivery — ONE ACTION NEEDED FROM YOU
+### 1. Email delivery — Resend (needs an API key from you)
 
-Booking enquiries are wired to **ayisijanet5@gmail.com** via FormSubmit, which
-needs no account.
+Booking enquiries go to **ayisijanet5@gmail.com** through `api/book.js`, a Vercel
+serverless function that sends via [Resend](https://resend.com).
 
-**FormSubmit activates per domain, not just per email address.** An activation
-done from localhost does NOT activate the live site — each origin triggers its
-own confirmation. Always activate from the real domain:
+**The API key is a secret. It must never go in this repo or in any file the
+browser downloads** — a key in client-side JavaScript can be read from
+view-source by anyone and used to send mail as you. It lives only in Vercel's
+environment variables.
 
-1. Submit one test enquiry from **https://www.neatneven.com/contact/** — not
-   from localhost and not from a file:// page.
-2. Open **ayisijanet5@gmail.com** and find the mail from FormSubmit. Check that
-   it says **Form at: https://www.neatneven.com/...** before clicking.
-3. **Check Spam and the Promotions tab** — it very often lands there.
-4. Click **Activate Form**.
-5. From then on every booking lands in that inbox, and hitting *Reply* goes
-   straight back to the client.
+**Setup:**
 
-Until that link is clicked, FormSubmit accepts the request but delivers
-nothing. The form correctly tells visitors to use WhatsApp instead while that
-is the case — it does not claim the booking was sent.
+1. Create a free Resend account at https://resend.com using **ayisijanet5@gmail.com**.
+2. **API Keys → Create API Key** (sending permission is enough). Copy the
+   `re_...` value — Resend shows it once.
+3. In Vercel: your project → **Settings → Environment Variables** → add
 
-**Then do this second step**, in `js/main.js`:
+   | Name | Value |
+   | --- | --- |
+   | `RESEND_API_KEY` | the `re_...` key |
 
-After activating, FormSubmit sends you a random alias endpoint like
-`https://formsubmit.co/ajax/a1b2c3d4e5`. Paste it over `formEndpoint`. It
-behaves identically but keeps the Gmail address out of the page source, where
-spam bots would otherwise harvest it.
+4. **Redeploy** (Deployments → ⋯ → Redeploy). Environment variables only apply
+   to builds made after they are added.
 
-```js
-var CONFIG = {
-  whatsapp: '233551473359',
-  notifyEmail: 'ayisijanet5@gmail.com',
-  formEndpoint: 'https://formsubmit.co/ajax/ayisijanet5@gmail.com'  // <- swap for the alias
-};
-```
+That is enough to start. Resend's shared sender is used by default, and it can
+deliver to the address that owns the Resend account — which is exactly where
+these enquiries go.
 
-**The WhatsApp button works right now** with no setup — it opens a chat to
-055 147 3359 with all the form details filled in.
+**Optional, for a branded sender:** verify `neatneven.com` in Resend
+(**Domains → Add Domain**), add the DNS records it gives you at name.com, then
+set a second variable:
+
+| Name | Value |
+| --- | --- |
+| `RESEND_FROM` | `Neat'n'Even <bookings@neatneven.com>` |
+
+`BOOKING_TO` can also be set if enquiries should go somewhere other than
+ayisijanet5@gmail.com.
+
+**Behaviour:** hitting *Reply* in the inbox answers the client directly. The form
+works without JavaScript too — `api/book.js` accepts a plain form POST and
+redirects to `/thank-you/`. Until the key is set the form does not pretend to
+send: it shows the WhatsApp fallback and keeps what the client typed.
+
+**The WhatsApp button needs no setup and works today.**
 
 ### 2. Prices — bridal is done, two packages still open
 

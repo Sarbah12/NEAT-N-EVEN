@@ -140,15 +140,11 @@
           </p>
 
           <!-- action/method make this a working plain-HTML POST even if the
-               JavaScript never runs. main.js intercepts submit and posts to
-               the /ajax/ endpoint instead, so the page does not navigate. -->
+               JavaScript never runs; api/book.js redirects to /thank-you/ in
+               that case. main.js intercepts submit and posts JSON instead so
+               the page does not navigate away. -->
           <form id="bookingForm" novalidate style="margin-top:2rem"
-                action="https://formsubmit.co/ayisijanet5@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="Booking enquiry — Neat'n'Even website">
-            <input type="hidden" name="_template" value="table">
-            <!-- where FormSubmit returns people after a no-JS submission.
-                 Update this if the domain changes. -->
-            <input type="hidden" name="_next" value="https://www.neatneven.com/thank-you/">
+                action="/api/book" method="POST">
 
             <div class="field-grid">
               <div class="field">
